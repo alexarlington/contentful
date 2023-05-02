@@ -1,25 +1,29 @@
-import React from 'react'
-import { createClient } from 'contentful'
-
-
-const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  environment: 'master', // defaults to 'master' if not set
-  accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN
-})
-
-client.getEntries()
-.then((response) => console.log(response.items))
-.catch(console.error)
-
+import React, { useEffect, useState } from 'react';
+import client from './contentful';
 
 function App() {
-  return(
-    <>
-      <p>hi</p>
-      
-    </>
-  )
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    client.getEntries()
+      .then((response) => {
+        setPosts(response.items);
+      })
+      .catch(console.error);
+  }, []);
+
+  return (
+    <div>
+        <p>hi there</p>
+        
+        <ul>
+          {posts.map(post => (
+            <li key={post.sys.id}>{post.fields.title}</li>
+          ))}
+        </ul>
+
+    </div>
+  );
 }
 
-export default App
+export default App;
