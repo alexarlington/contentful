@@ -12,13 +12,15 @@ function App() {
       .catch(console.error);
   }, []);
 
+  console.log(posts)
+
   return (
     <div>
         <p>hi there</p>
         
         <ul>
           {posts.map(post => (
-            <li key={post.sys.id}>{post.fields.title}</li>
+            <li key={post.sys.id}>{post.fields.name}</li>
           ))}
         </ul>
 
