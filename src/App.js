@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import client from './contentful';
+import { Route, Routes } from 'react-router-dom';
+import { useContentful } from '../AppContext';
+import Posts from './Posts';
+import Home from './Home'
+
 
 function App() {
-  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    client.getEntries()
-      .then((response) => {
-        setPosts(response.items);
-      })
-      .catch(console.error);
-  }, []);
+  const { client } = useContentful();
+  console.log("1",client)
 
-  console.log(posts)
 
   return (
     <div>
-        <p>hi there</p>
-        
-        <ul>
-          {posts.map(post => (
-            <li key={post.sys.id}>{post.fields.name}</li>
-          ))}
-        </ul>
+      <h1>app.js</h1>
+      <Routes>
+        <Route exact path="/" element={<Home/>} />
+        <Route path="/:url" element={<Posts/>} />
+      </Routes>        
+
 
     </div>
   );
