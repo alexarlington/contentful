@@ -8,6 +8,15 @@
             <li key={post.sys.id}>{post.fields.name}</li>
         ))}
     </ul>
+
+    
+        <ul>
+        {props.data.map((item) => (
+          <li key={item.sys.id}>
+            <Link to={`/${item.fields.url}`}>{item.fields.name}</Link>
+          </li>
+        ))}
+      </ul>
 </div>
 
 

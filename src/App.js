@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useContentful } from '../AppContext';
+import { useContentful } from './AppContext';
 import Posts from './Posts';
 import Home from './Home'
 
 
 function App() {
-
-  const { client } = useContentful();
-  console.log("1",client)
-
 
   return (
     <div>

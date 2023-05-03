@@ -10,17 +10,16 @@ export const useContentful = () => {
   return useContext(contentfulContext);
 };
 
-// ContentfulProvider is a wrapper component that provides all children with client (data)
+// ContentfulProvider is a wrapper component that provides all children with client object
 // contentful client is being stored in useState via useEffect function
 export const ContentfulProvider = ({ children }) => {
   const [client, setClient] = useState();
 
   useEffect(() => {
     const client = contentful.createClient({
-      space: process.env.REACT_APP_CONTENTFUL_SPACE_ID,
-      accessToken: process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN,
-    });
-
+      space: process.env.CONTENTFUL_SPACE_ID,
+      accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN
+      });
     setClient(client);
   }, []);
 
